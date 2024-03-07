@@ -20,13 +20,14 @@
                         <textarea class="form-control" id="editTaskDescription" rows="3"  name="description" > <?php echo $row['description']?> </textarea>
                     </div>
                     <div class="form-group">
-                        <label for="editTaskStatus">Status</label>
-                        <select class="form-control" id="editTaskStatus" name="status">
-                            <option value="created">Created</option>
-                            <option value="in-progress">In Progress</option>
-                            <option value="done">Done</option>
-                        </select>
-                    </div>
+    <label for="editTaskStatus">Status</label>
+    <select class="form-control" id="editTaskStatus" name="status">
+        <option value="created" <?php if ($row['status'] == 'created') echo 'selected'; ?>>Created</option>
+        <option value="in-progress" <?php if ($row['status'] == 'in-progress') echo 'selected'; ?>>In Progress</option>
+        <option value="done" <?php if ($row['status'] == 'done') echo 'selected'; ?>>Done</option>
+    </select>
+</div>
+
                     <input type="hidden" value="<?php echo $row['id'];?>" name="id" />
                     
                     <div class="modal-footer">
