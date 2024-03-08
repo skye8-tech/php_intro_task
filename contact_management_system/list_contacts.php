@@ -29,26 +29,31 @@
             </thead>
             <tbody>
                 <!-- This part will be replaced with PHP loop to display contacts -->
+               <?php
+               include "connect.php";
+               $sql = "SELECT * FROM contact";
+               $result = $connect -> query($sql);
+               while($row = $result -> fetch_assoc()){
+                $id = $row['id'];
+                $name = $row['name'];
+                $email = $row['email'];
+                $phone = $row['phone'];
+                
+               echo" 
                 <tr>
-                    <td>John Doe</td>
-                    <td>john@example.com</td>
-                    <td>123-456-7890</td>
+                    <td>$name</td>
+                    <td>$email</td>
+                    <td>$phone</td>
                     <td>
                         <!-- Placeholder buttons (to be replaced with anchor tags) -->
-                        <button class="btn btn-primary">Edit</button>
-                        <button class="btn btn-danger">Delete</button>
+                        <a class='btn btn-primary' href='edit.php?updateid=$id' >Edit</a>
+                        <a class='btn btn-danger' href='delete.php?deleteid=$id'>Delete</a>
                     </td>
                 </tr>
-                <tr>
-                    <td>Jane Smith</td>
-                    <td>jane@example.com</td>
-                    <td>987-654-3210</td>
-                    <td>
-                        <!-- Placeholder buttons (to be replaced with anchor tags) -->
-                        <button class="btn btn-primary">Edit</button>
-                        <button class="btn btn-danger">Delete</button>
-                    </td>
-                </tr>
+                ";
+               }
+                ?>
+                
                 <!-- End of placeholder -->
             </tbody>
         </table>

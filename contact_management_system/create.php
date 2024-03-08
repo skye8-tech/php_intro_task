@@ -31,7 +31,7 @@
                 <label for="image">Profile Picture:</label>
                 <input type="file" class="form-control-file" id="image" name="image">
             </div>
-            <button type="submit" class="btn btn-primary" name="create_contact">Submit</button>
+            <button type="submit" class="btn btn-primary" name="action" value="create">Submit</button>
         </form>
     </div>
 </body>
