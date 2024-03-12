@@ -54,7 +54,22 @@ if (isset($_POST["action"]) && $_POST["action"] == "edit-task"){
 
     } 
 
+//comment creation
+  if (isset($_POST["action"]) && $_POST["action"] == "create-comment"){
+    $task_id= $_POST["taskId"];
+    $comment=$_POST['comment'];
 
+    
+    $sql="INSERT INTO comments (task_id,comment) VALUES ('$task_id','$comment')";
+    $result=$conn->query($sql);
+    
+    if($result==true){
+        echo "New record created successfully";
+        header('Location: index.php');
+        exit();
+}else{
+    echo "Error:". $sql."<br>". $conn->error;
 }
-?>
+}
 
+}?>

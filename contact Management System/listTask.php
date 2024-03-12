@@ -69,6 +69,13 @@ include "dbconfig.php";
     .action-icons i:hover {
         color: #007bff;
     }
+    .task-comment {
+    background-color: #f4f4f4;
+    border-radius: 10px;
+    border: none;
+    padding: 8px 24px;
+    margin-top: 8px;
+}
 </style>
 
         <div class="task-container">
@@ -87,8 +94,24 @@ include "dbconfig.php";
                     ?>
                     <div class="task">
                 <div class="task-details">
-                    <div class="task-title"><?php echo $row['title'];?>: <span class="des"><?php echo $row['description'];?></span></div>
+                    <div class="task-title"><?php echo $row['title'];?>: <span class="des"><?php echo $row['description'];?></span>
+                     <span>
+                    
+                    </span></div>
+                     
                     <div class="status status-done"><?php echo $row['status'];?></div>
+                <div class="comment">
+               
+                <form action="action_task.php" method="POST" >
+                    <div class="comment-section">
+                        <input type="hidden" value="<?php echo $row['id']?>" name="taskId">
+                        <input type="text" name="comment" class="task-comment" placeholder=" Add comment..." id="taskComment">
+                    <button name="action" value="create-comment" type="submit" class="btn btn-primary"id="saveComment">Save</button>
+                
+                    </div>
+                   
+                    </form>
+                </div>
                 </div>
 
                 
@@ -101,17 +124,31 @@ include "dbconfig.php";
                 <i class="fas fa-edit icon-action" data-toggle="modal" data-target="#editTaskModal-<?php echo $row['id']; ?>" value="edit-task" name="action" type="button"></i>
                     <i class="fas fa-trash-alt icon-action" data-toggle="modal" data-target="#deleteTaskModal-<?php echo $row['id']; ?>" name="action" value="delete-task" type="button" ></i>
                 </div>
-
+               
+                    </div>
                <?php 
-             }
+                        }         
             ?>
              <?php
               if ($row['status']=="created"){
                     ?>
                     <div class="task">
                 <div class="task-details">
-                    <div class="task-title"><?php echo $row['title'];?>: <span class="des"><?php echo $row['description'];?></span></div>
+                    <div class="task-title"><?php echo $row['title'];?>: <span class="des"><?php echo $row['description'];?></span> </div>
                     <div class="status status-created"><?php echo $row['status'];?></div>
+
+                       <div class="comment">
+               
+                <form action="action_task.php" method="POST" >
+                    <div class="comment-section">
+                        <input type="hidden" value="<?php echo $row['id']?>" name="taskId">
+                        <input type="text" name="comment" class="task-comment" placeholder=" Add comment..." id="taskComment">
+                    <button name="action" value="create-comment" type="submit" class="btn btn-primary"id="saveComment">Save</button>
+                
+                    </div>
+                   
+                    </form>
+                </div>
                 </div>
 
                 
@@ -135,6 +172,19 @@ include "dbconfig.php";
                 <div class="task-details">
                     <div class="task-title"><?php echo $row['title'];?>: <span class="des"><?php echo $row['description'];?></span></div>
                     <div class="status status-in-progress"><?php echo $row['status'];?></div>
+
+                      <div class="comment">
+               
+                <form action="action_task.php" method="POST" >
+                    <div class="comment-section">
+                        <input type="hidden" value="<?php echo $row['id']?>" name="taskId">
+                        <input type="text" name="comment" class="task-comment" placeholder=" Add comment..." id="taskComment">
+                    <button name="action" value="create-comment" type="submit" class="btn btn-primary"id="saveComment">Save</button>
+                
+                    </div>
+                   
+                    </form>
+                </div>
                 </div>
 
                 
@@ -160,6 +210,38 @@ include "dbconfig.php";
                include "deletemodal.php";
              }?>
         </div>
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+  const commentInput = document.getElementById("taskComment");
+  const saveButton = document.getElementById("saveComment");
 
+  // Initially hide the save button
+  saveButton.style.display = "none";
+
+  commentInput.addEventListener("input", function() {
+    // Show the save button if there is text in the input field, otherwise hide it
+    if (commentInput.value.trim() !== "") {
+      saveButton.style.display = "block";
+    } else {
+      saveButton.style.display = "none";
+    }
+  });
+
+  saveButton.addEventListener("click", function() {
+    const commentText = commentInput.value.trim();
+    if (commentText !== "") {
+      saveComment(commentText);
+      commentInput.value = "";
+      saveButton.style.display = "none"; // Hide the button after saving the comment
+    } else {
+      alert("Please enter a comment before saving.");
+    }
+  });
+
+  
+});
+
+
+</script>
 
 
