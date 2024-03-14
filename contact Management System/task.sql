@@ -9,4 +9,5 @@ CREATE TABLE comments(
     task_id INT ,
     comment TEXT ,
     FOREIGN KEY (task_id) REFERENCES tasks(id) 
+    ON DELETE CASCADE
 );
