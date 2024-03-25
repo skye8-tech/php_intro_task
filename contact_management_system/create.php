@@ -1,13 +1,6 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Create New Contact</title>
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="styles/style.css">
-    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
-</head>
+<?php
+    include 'header.php';
+?>
 <body>
     <div class="container">
         <h2 class="text-center mt-5 mb-3">Create New Contact</h2>
@@ -31,7 +24,7 @@
                 <label for="image">Profile Picture:</label>
                 <input type="file" class="form-control-file" id="image" name="image">
             </div>
-            <button type="submit" class="btn btn-primary" name="create_contact">Submit</button>
+            <button type="submit" class="btn btn-primary" name="action" value="create">Submit</button>
         </form>
     </div>
 </body>
